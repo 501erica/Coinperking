@@ -1,0 +1,98 @@
+@startuml
+
+class proxy
+{
+	+コンストラクタ
+	+デストラクタ
+	+料金表示();
+	+モードクラスを管理するコンテナ;
+
+	-料金;
+	-入場時刻（yyyymmdd）
+	-退場時刻（yyyymmdd）;
+	-モードカウンタークラス;
+}
+class ModeCounter 
+{
+	+コンストラクタ
+	+モード数カウント
+	+CostCalculator作成(CalculateMode mode ,int);
+	+次時刻算出(enum CalculateMode);
+	-入庫時刻;
+	-出庫時刻;
+	-Judgerクラス;
+
+}
+enum CalculateMode{
+	NOON
+	NIGTH
+	SPECIAL_DAY
+}
+
+class Date{
+	+日付構造体
+	+日数判定()
+	+曜日判定()
+	+うるう年判定()
+	+日付を一日進める()
+}
+
+class CostCalculator
+{
+	+料金計算()
+	{abstract} 利用時間（分）
+	{abstract} 利用料金（円）
+	{abstract} 加算時間（分）
+	{abstract} 加算料金（円）
+	{abstract} 最大料金（円）
+}
+
+class CostCalculator_Noon 
+{
+	+コンストラクタ
+	#利用時間（分）
+	#利用料金（円）
+	#加算時間（分）= 20
+	#加算料金（円）= 200
+	#最大料金（円）= 600
+}
+
+class CostCalculator_Night 
+{
+	+コンストラクタ
+	#利用時間（分）
+	#利用料金（円）
+	#加算時間（分）= 20
+	#加算料金（円）= 100
+	#最大料金（円）= 300
+}
+class CostCalculator_SpecialDay
+{
+	+コンストラクタ
+	#利用時間（分）
+	#利用料金（円）
+	#加算時間（分）= 20
+	#加算料金（円）= 200
+	#最大料金（円）= 2000
+}
+class Judger{
+	+コンストラクタ
+	+日付大小判定()
+	+モード判定()
+	+入力値エラーを判定()
+}
+
+
+CostCalculator <|-- CostCalculator_Noon
+CostCalculator <|-- CostCalculator_Night
+CostCalculator <|-- CostCalculator_SpecialDay
+
+proxy o-> CostCalculator 
+proxy o-> ModeCounter
+proxy - CalculateMode
+proxy o-> Date
+proxy o-> Judger 
+
+ModeCounter - CalculateMode
+
+@enduml

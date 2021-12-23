@@ -1,0 +1,29 @@
+@startuml
+participant Proxy
+Proxy -> ModeCounter :モード数カウントを指示
+autonumber 1.1.1
+loop 入場時刻＜退場時刻 が成立している
+ModeCounter -> Judger:モードを判定\n（昼・夜・特別日）
+activate ModeCounter
+Judger -> ModeJudger :入場日のモードを判定\n（昼・夜・特別日）
+Judger <-- ModeJudger :
+ModeCounter <- Judger :モード判定結果を返す
+deactivate ModeCounter
+
+
+ModeCounter -> ModeCounter :入場時刻から一番近い料金切り替え時刻（次時刻）を計算する
+note right : 入場日が2021/12/21 12:20の場合\n次時刻は2021/12/21 22:00になる
+alt 次時刻 > 退場時刻
+ModeCounter -> ModeCounter :次時刻を退場時刻にする
+end alt
+ModeCounter -> ModeCounter :次時刻-入場時刻を実行して\n各モードの分を算出する
+create CostCalculator 
+ModeCounter -> CostCalculator :new 各モードの分を渡す
+ref over CostCalculator 
+クラスのnewのやり方は
+Factoryパターンを活用する
+end ref
+ModeCounter <-- CostCalculator
+Proxy <- ModeCounter :vectorコンテナに\nクラスを挿入する
+end loop
+@enduml

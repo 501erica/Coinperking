@@ -1,0 +1,8 @@
+@startuml
+class date{
+	+struct tm information = {0};
+	+int day_of_week()
+	+bool is_leap_year(int y)
+	+int num_days_in_month(int y, int m)
+}
+@enduml

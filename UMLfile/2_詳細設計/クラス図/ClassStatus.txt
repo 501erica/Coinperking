@@ -1,0 +1,8 @@
+@startuml
+enum Status {
+	START,
+	ERRORJUDGE,
+	CALCULATE,
+	RESULT
+}
+@enduml

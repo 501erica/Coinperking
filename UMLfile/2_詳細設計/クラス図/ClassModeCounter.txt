@@ -1,0 +1,15 @@
+@startuml
+class ModeCounter 
+{
+	+ModeCounter();
+	+ModeCounter(struct date, struct date);
+	+void ModeCount(std::vector<CostCalculator*>&);
+	+CostCalculator* CreateCostCalculator(CalculateMode mode ,int);
+	+bool evalDate(struct date, struct date);
+	+struct date evalBorderDate(enum CalculateMode);
+	-struct date startDate;
+	-struct date endDate;
+	-class ModeJudger modejudger;
+
+}
+@enduml

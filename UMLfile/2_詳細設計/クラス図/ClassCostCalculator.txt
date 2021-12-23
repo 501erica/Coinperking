@@ -1,0 +1,37 @@
+@startuml
+class CostCalculator
+{
+	+int CostCalculate() = 0;
+	#int minitus = 0;
+	#int calculateCost = 0;
+	#int perMinitus = 1;
+	#int perCost = 1;
+	#int maxCost = 0;
+}
+
+class CostCalculator_Noon 
+{
+	+CostCalculator_Noon();
+	+CostCalculator_Noon(int);
+	+~CostCalculator_Noon();
+}
+
+class CostCalculator_Night 
+{
+	+CostCalculator_Night();
+	+CostCalculator_Night(int);
+	+~CostCalculator_Night();
+}
+class CostCalculator_SpecialDay
+{
+	+CostCalculator_SpecialDay();
+	+CostCalculator_SpecialDay(int);
+	+~CostCalculator_SpecialDay();
+}
+
+
+CostCalculator <|-- CostCalculator_Noon
+CostCalculator <|-- CostCalculator_Night
+CostCalculator <|-- CostCalculator_SpecialDay
+
+@enduml

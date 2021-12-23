@@ -1,0 +1,15 @@
+@startuml
+class Judger{
+	+Judger()
+	+~Judger()
+}
+class ErrorJudger{
+
+}
+class ModeJudger{
+
+}
+
+Judger -* ErrorJudger
+Judger -* ModeJudger
+@enduml

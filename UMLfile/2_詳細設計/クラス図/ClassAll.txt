@@ -1,0 +1,107 @@
+@startuml
+enum Status {
+	START,
+	ERRORJUDGE,
+	CALCULATE,
+	RESULT
+}
+
+class proxy
+{
+	+Proxy();
+	+~Proxy();
+	+Proxy(std::string, std::string);
+	+void showCost();
+	+std::vector<CostCalculator*> ModeContainer;
+
+	-int Cost = 0;
+	-struct date InDate;
+	-struct date OutDate;
+	-ModeCounter* p_ModeCounter = nullptr;
+	-void Initialize(std::string, std::string);
+}
+class ModeCounter 
+{
+	+ModeCounter();
+	+ModeCounter(struct date, struct date);
+	+void ModeCount(std::vector<CostCalculator*>&);
+	+CostCalculator* CreateCostCalculator(CalculateMode mode ,int);
+	+bool evalDate(struct date, struct date);
+	+struct date evalBorderDate(enum CalculateMode);
+	-struct date startDate;
+	-struct date endDate;
+	-class ModeJudger modejudger;
+
+}
+enum CalculateMode{
+	NOON
+	NIGTH
+	SPECIAL_DAY
+}
+
+class Date{
+	+struct tm information = {0};
+	+int day_of_week()
+	+bool is_leap_year(int y)
+	+int num_days_in_month(int y, int m)
+}
+
+class CostCalculator
+{
+	+int CostCalculate() = 0;
+	#int minitus = 0;
+	#int calculateCost = 0;
+	#int perMinitus = 1;
+	#int perCost = 1;
+	#int maxCost = 0;
+}
+
+class CostCalculator_Noon 
+{
+	+CostCalculator_Noon();
+	+CostCalculator_Noon(int);
+	+~CostCalculator_Noon();
+}
+
+class CostCalculator_Night 
+{
+	+CostCalculator_Night();
+	+CostCalculator_Night(int);
+	+~CostCalculator_Night();
+}
+class CostCalculator_SpecialDay
+{
+	+CostCalculator_SpecialDay();
+	+CostCalculator_SpecialDay(int);
+	+~CostCalculator_SpecialDay();
+}
+class Judger{
+	+Judger()
+	+~Judger()
+}
+class ErrorJudger{
+
+}
+class ModeJudger{
+
+}
+
+Judger -* ErrorJudger
+Judger -* ModeJudger
+
+
+CostCalculator <|-- CostCalculator_Noon
+CostCalculator <|-- CostCalculator_Night
+CostCalculator <|-- CostCalculator_SpecialDay
+
+proxy -o CostCalculator 
+proxy -o ModeCounter
+proxy - CalculateMode
+proxy -o Date
+proxy -o Judger 
+
+ModeCounter - CalculateMode
+
+Judger - Status
+
+@enduml

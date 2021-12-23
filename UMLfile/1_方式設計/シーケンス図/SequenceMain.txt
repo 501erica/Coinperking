@@ -1,0 +1,36 @@
+@startuml
+actor User
+participant main
+autonumber 1.1.1
+User -> main : システム起動
+loop 継続 が選択されている間
+main -> User : 入場時刻・退場時刻を入れるように促す
+User->main :入場時刻・退場時刻を入れる
+create ErrorJudge
+main -> ErrorJudge :new
+main -> ErrorJudge :入力値の判定を行う
+alt 入力値に問題がない
+create Proxy
+main -> Proxy : new
+ref over Proxy
+    Proxy呼出し後の処理は
+    別のシーケンス図参照
+end ref
+else 入力値に問題がある
+main -> User :入力値に誤りがあることを伝える
+end
+
+main -> Proxy !! :delete
+main -> ErrorJudge !! :delete
+main -> User : 処理の継続・終了を促す
+alt 継続を選択
+User <- main : 入場時刻・退場時刻を入れるように促す
+note across :以下1.1.3に続く
+else 終了を選択
+main -> User :終了通知を出す
+note across :ループから抜ける
+end
+end
+
+
+@enduml

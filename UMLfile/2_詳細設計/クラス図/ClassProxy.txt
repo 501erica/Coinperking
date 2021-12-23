@@ -1,0 +1,16 @@
+@startuml
+class proxy
+{
+	+Proxy();
+	+~Proxy();
+	+Proxy(std::string, std::string);
+	+void showCost();
+	+std::vector<CostCalculator*> ModeContainer;
+
+	-int Cost = 0;
+	-struct date InDate;
+	-struct date OutDate;
+	-ModeCounter* p_ModeCounter = nullptr;
+	-void Initialize(std::string, std::string);
+}
+@enduml

@@ -1,0 +1,39 @@
+@startuml
+actor User
+participant Proxy
+autonumber 1.1.1
+activate Proxy
+Proxy -> Proxy :メンバ変数の初期化
+note right :入庫時刻・出庫時刻をメンバ変数に渡す
+activate Proxy
+create ModeCounter 
+Proxy -> ModeCounter :new
+ModeCounter -> ModeCounter : メンバ変数の初期化
+ModeCounter --> Proxy 
+deactivate Proxy
+
+
+Proxy -> ModeCounter :モード数をカウントを指示
+note right :0時～１２時で入力されたら\n昼：5H,夜：7Hの２つのクラス作成する
+activate Proxy
+group ref
+create CostCalculator 
+ModeCounter -> CostCalculator :new
+note over ModeCounter,CostCalculator : SequenceModeCounterに記載。\nここでは1.1.5でCostCalculatorを\nnewしていることが分かればよい
+end group
+
+
+ModeCounter --> Proxy
+deactivate Proxy
+
+Proxy -> Proxy :料金計算を行う
+activate Proxy
+loop カウントしたモード数だけ繰り返す
+Proxy -> CostCalculator:料金計算を指示
+Proxy <- CostCalculator:料金を返す
+Proxy -> Proxy :料金を加算
+end
+Proxy -> User:料金をユーザに表示する
+deactivate Proxy
+deactivate Proxy
+@enduml
