@@ -1,0 +1,50 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "addTest",
+            "type": "shell",
+            "command": "C:\\mingw-w64\\x86_64-8.1.0-win32-seh-rt_v6-rev0\\mingw64\\bin\\g++.exe",
+            "args": [
+                "-std=c++17",
+                "./source/Judger.cpp",
+                "./testsource/judgerTest.cc",
+                "-lC:/Users/501er/Desktop/Coinperking/",
+                "-g",
+                "-pthread",
+                "-lgtest_main",
+                "-lgtest",
+                "-o",
+                "${fileDirname}\\{fileBasenameNoExtension}.exe"
+            ],
+            "group": "build",
+        },
+        {
+            "type": "cppbuild",
+            "label": "C/C++: g++.exe アクティブなファイルのビルド",
+            "command": "C:\\mingw-w64\\x86_64-8.1.0-win32-seh-rt_v6-rev0\\mingw64\\bin\\g++.exe",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "../source/Proxy.cpp",
+                "../source/CostCalculator.cpp",
+                "../source/Judger.cpp",
+                "../source/ModeCounter.cpp",
+                "../source/main.cpp",
+                "-o",
+                //"${fileDirname}\\{fileBasenameNoExtension}.exe"
+                "${fileDirname}\\Coinperking.exe"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build"
+            },
+            "detail": "デバッガーによって生成されたタスク。"
+        }
+    ]
+}

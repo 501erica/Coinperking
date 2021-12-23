@@ -1,6 +1,7 @@
 #include "ModeCounter.h"
 #include "Mode.h"
 #include <iostream>
+#include <time.h>
 
 ModeCounter::ModeCounter()
 {

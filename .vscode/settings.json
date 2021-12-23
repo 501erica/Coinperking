@@ -1,0 +1,6 @@
+{
+   "env": {
+      "PATH": "%HOMEPATH"
+   },
+   "C_Cpp.errorSquiggles": "Enabled"
+}

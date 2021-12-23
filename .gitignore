@@ -51,6 +51,7 @@ build/
 *.vcxproj
 *.vcxproj.filters
 *.db
+googletest-release-1.8.1
 
 
 
