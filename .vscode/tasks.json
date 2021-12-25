@@ -4,16 +4,19 @@
         {
             "label": "addTest",
             "type": "shell",
-            "command": "C:\\mingw-w64\\x86_64-8.1.0-win32-seh-rt_v6-rev0\\mingw64\\bin\\g++.exe",
+            "command": "g++.exe",
             "args": [
                 "-std=c++17",
-                "./source/Judger.cpp",
+               // "./source/Judger.cpp",
                 "./testsource/judgerTest.cc",
-                "-lC:/Users/501er/Desktop/Coinperking/",
+                "-IC:/Users/501er/Desktop/Coinperking/",
                 "-g",
                 "-pthread",
+                "-LC:/Users/501er/Desktop/Coinperking/lib",
                 "-lgtest_main",
                 "-lgtest",
+                //"-lgtest_main",
+                //"-lgtest",
                 "-o",
                 "${fileDirname}\\{fileBasenameNoExtension}.exe"
             ],
