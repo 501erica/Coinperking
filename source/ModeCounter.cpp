@@ -42,9 +42,14 @@ void ModeCounter::ModeCount(std::vector<CostCalculator*>& cost)//ˆê”Ô‚¾‚é‚¢‚Æ‚±
 					nextDate.information.tm_min = 0;
 				}
 				else {
+					nextDate = this->startDate.advance(1);
 					nextDate.information.tm_hour =7;
 					nextDate.information.tm_min = 0;
 				}
+			}
+			else{
+				nextDate.information.tm_hour =7;
+				nextDate.information.tm_min = 0;
 			}
 		}
 		else if (mode == SPECIAL_DAY) {

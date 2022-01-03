@@ -1,13 +1,13 @@
-ï»¿#include<iostream>
+#include<iostream>
 #include <string>
 #include <regex>
 #include "Proxy.h"
 #include "Status.h"
 #include "Judger.h"
 
-int main(int argc, char** argv) {//Statusã§è‰²ã€…é ‘å¼µã‚‹
+int main(int argc, char** argv) {//Status‚ÅFXŠæ’£‚é
 
-	//è«¸ã€…åˆæœŸåŒ–
+	//”X‰Šú‰»
 	std::string InDate;
 	std::string OutDate;
 	enum answer {
@@ -19,28 +19,28 @@ int main(int argc, char** argv) {//Statusã§è‰²ã€…é ‘å¼µã‚‹
 
 	do {
 
-		//å…¥åŠ›å‡¦ç†
-		std::cout << "å…¥åº«æ™‚åˆ»ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ï¼ˆ2021å¹´01æœˆ15æ—¥ã®å ´åˆï¼š2021/01/15.11:05ï¼‰";
+		//“ü—Íˆ—
+		std::cout << "“üŒÉ‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢i2021”N01Œ15“ú‚Ìê‡F2021/01/15.11:05j";
 		std::cin >> InDate;
 		std::cout << std::endl;
-		std::cout << "å‡ºåº«æ™‚åˆ»ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ï¼ˆ2021å¹´01æœˆ15æ—¥ã®å ´åˆï¼š2021/01/15.11:05ï¼‰";
+		std::cout << "oŒÉ‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢i2021”N01Œ15“ú‚Ìê‡F2021/01/15.11:05j";
 		std::cin >> OutDate;
 		std::cout << std::endl;
 		Judger* judger = Judger::getInstance();
-		//å…¥åŠ›å€¤ã«å•é¡Œãªã„ï¼Ÿ
+		//“ü—Í’l‚É–â‘è‚È‚¢H
 		if (std::regex_match(InDate.c_str(), rx) && std::regex_match(OutDate.c_str(), rx)) { 
 
-			//è¨ˆç®—ï½æ–™é‡‘è¡¨ç¤ºå®Ÿæ–½
+			//ŒvZ`—¿‹à•\¦À{
 			Proxy * p_Proxy = new Proxy(InDate,OutDate);
 			delete p_Proxy;
 		}
 		else {
-			std::cout << "å…¥åŠ›å€¤ã«å•é¡ŒãŒã‚ã‚Šã¾ã™ã€‚" << std::endl;
+			std::cout << "“ü—Í’l‚É–â‘è‚ª‚ ‚è‚Ü‚·B" << std::endl;
 		}
 
-		//ç¶™ç¶šç¢ºèª(æ•°å€¤ä»¥å¤–ã‚’ã„ã‚Œã‚‹ã¨ãƒ€ãƒ¡ãªã®ã§ç›´ã™)
-		std::cout << "å‡¦ç†ã‚’ç¶™ç¶šã—ã¾ã™ã‹ï¼Ÿ" << std::endl;
-		std::cout << "ç¶™ç¶šï¼š0ã€€çµ‚äº†ï¼š0ä»¥å¤–" << std::endl;
+		//Œp‘±Šm”F(”’lˆÈŠO‚ğ‚¢‚ê‚é‚Æƒ_ƒ‚È‚Ì‚Å’¼‚·)
+		std::cout << "ˆ—‚ğŒp‘±‚µ‚Ü‚·‚©H" << std::endl;
+		std::cout << "Œp‘±F0@I—¹F0ˆÈŠO" << std::endl;
 		int answer;
 		std::cin >> answer;
 		switch (answer) {
@@ -51,7 +51,7 @@ int main(int argc, char** argv) {//Statusã§è‰²ã€…é ‘å¼µã‚‹
 			LoopFlag = false;
 			break;
 		default:
-			std::cout << "ï¼ï¼ï¼ï¼ï¼å‡¦ç†ã‚’çµ‚äº†ã—ã¾ã™ï¼ï¼ï¼ï¼ï¼" << std::endl;
+			std::cout << "ˆ—‚ğI—¹‚µ‚Ü‚·" << std::endl;
 			LoopFlag = false;
 			break;
 		}

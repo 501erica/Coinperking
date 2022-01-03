@@ -260,14 +260,14 @@
 #include <string.h>
 
 #include <cerrno>
-// #include <condition_variable>  // Guarded by GTEST_IS_THREADSAFE below
+#include <condition_variable>  // Guarded by GTEST_IS_THREADSAFE below
 #include <cstdint>
 #include <iostream>
 #include <limits>
 #include <locale>
 #include <memory>
 #include <string>
-// #include <mutex>  // Guarded by GTEST_IS_THREADSAFE below
+#include <mutex>  // Guarded by GTEST_IS_THREADSAFE below
 #include <tuple>
 #include <type_traits>
 #include <vector>

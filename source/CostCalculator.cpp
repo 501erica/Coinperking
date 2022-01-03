@@ -33,7 +33,7 @@ CostCalculator_Noon::CostCalculator_Noon()
 
 CostCalculator_Noon::CostCalculator_Noon(int minitus)
 {
-	this->perCost = 200;
+	this->perCost = 100;
 	this->perMinitus = 20;
 	this->maxCost = 900;
 	this->minitus = minitus;
