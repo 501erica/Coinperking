@@ -18,11 +18,11 @@ int main(int argc, char** argv) {
 	bool LoopFlag = false;
 	do {
 		//入力処理
-		std::cout << "入庫時刻を入力してください（2021年01月15日の場合：2021/01/15-11:05）";
+		std::cout << "入庫日時を入力してください（2021年01月15日の場合：2021/01/15-11:05）";
 		//std::getline(std::cin, InDate);
 		std::cin >> InDate;
 		std::cout << std::endl;
-		std::cout << "出庫時刻を入力してください（2021年01月15日の場合：2021/01/15-11:05）";
+		std::cout << "出庫日時を入力してください（2021年01月15日の場合：2021/01/15-11:05）";
 		//std::getline(std::cin , OutDate);
 		std::cin >> OutDate;
 		std::cout << std::endl;

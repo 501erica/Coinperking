@@ -53,7 +53,7 @@ void Proxy::showCost()
 	for (int i = 0; i < this -> ModeContainer.size(); i++) {
 		this->Cost += this -> ModeContainer.at(i)->CostCalculate();
 	}
-	std::cout << "料金は　" << this->Cost << "　円です。" << std::endl;
+	std::cout << "利用料金は　" << this->Cost << "　円です。" << std::endl;
 }
 
 //============================================================
