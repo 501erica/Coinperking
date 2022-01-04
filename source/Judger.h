@@ -11,7 +11,7 @@ public:
 	//モード判定
 	CalculateMode judge(struct date);
 	//日付の大小判定
-	bool judge(struct tm);
+	bool judge(struct tm,struct tm);
 	//入力値判定
 	bool judge(std::string, std::string);
 private:

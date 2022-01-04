@@ -1,18 +1,29 @@
 #pragma once
 #include <iostream>
 #include <ctime>
-//tm\‘¢‘Ì‚É‚µ‚Ä‚©‚çFX‚ÆC³‚ª•K—v
 struct date {
 	struct tm information = {0};
-	//y”NmŒ‚ÉŠÜ‚Ü‚ê‚é“ú”‚ğŒvZ‚·‚éŠÖ”
+	//============================================================
+	//Date
+	//day_of_week()
+	//INPUT : 
+	//OUTPUT : int
+	//MEMO : —j“ú”»’è [0`6](“ú:0 Œ:1 ‰Î:2 …:3 –Ø:4 ‹à:5 “y:6)
+	//============================================================
 	int day_of_week()
 	{
 		auto information = this->information;
 		auto time = mktime(&information);
 		information = *localtime(&time);
-		//—j“ú[0`6](“ú:0 Œ:1 ‰Î:2 …:3 –Ø:4 ‹à:5 “y:6)
 		return information.tm_wday;
 	}
+	//============================================================
+	//Date
+	//advance(int Day)
+	//INPUT : int
+	//OUTPUT : date
+	//MEMO : ˆø”‚Åw’è‚³‚ê‚½”‚¾‚¯“ú•t‚ği‚ß‚é
+	//============================================================
 	date advance(int Day)
 	{
 		date nextdate;

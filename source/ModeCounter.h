@@ -12,7 +12,7 @@ public:
 	~ModeCounter();
 	ModeCounter(struct date, struct date);
 	void ModeCount(std::vector<CostCalculator*>&);
-	CostCalculator* CreateCostCalculator(CalculateMode mode ,int);
+	CostCalculator* CreateCostCalculator(CalculateMode mode ,int minitus);
 	bool evalDate(struct date, struct date);
 	void updateStartDate(date&,CalculateMode);
 	struct date evalBorderDate(enum CalculateMode);

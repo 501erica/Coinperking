@@ -3,6 +3,13 @@
 #include <iostream>
 #include <time.h>
 
+//============================================================
+//ModeCounter
+//ModeCounter()
+//INPUT : 
+//OUTPUT : 
+//MEMO : ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+//============================================================
 ModeCounter::ModeCounter()
 {
 	modejudger = Judger::getInstance();
@@ -10,75 +17,67 @@ ModeCounter::ModeCounter()
 	this->endDate = {0};
 
 }
-
+//============================================================
+//ModeCounter
+//~ModeCounter()
+//INPUT : 
+//OUTPUT : 
+//MEMO : ƒfƒXƒgƒ‰ƒNƒ^
+//============================================================
 ModeCounter::~ModeCounter()
 {
 }
-
+//============================================================
+//ModeCounter
+//ModeCounter(struct date InDate, struct date OutDate)
+//INPUT : struct date ,struct date
+//OUTPUT : 
+//MEMO : ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+//============================================================
 ModeCounter::ModeCounter(struct date InDate, struct date OutDate)
 {
 	modejudger = Judger::getInstance();
 	this->startDate = InDate;
 	this->endDate = OutDate;
 }
-
-void ModeCounter::ModeCount(std::vector<CostCalculator*>& cost)//ˆê”Ô‚¾‚é‚¢‚Æ‚±
+//============================================================
+//ModeCounter
+//ModeCount(std::vector<CostCalculator*>& cost)
+//INPUT : vector<CostCaluculator*>
+//OUTPUT : 
+//MEMO : “üê‚Æ‘Şê‚©‚çƒ‚[ƒh(’‹E–éE“Á•Ê“ú)‚ÌŒÂ”‚ğŒvZ
+//============================================================
+void ModeCounter::ModeCount(std::vector<CostCalculator*>& cost)
 {
 	while (ModeCounter::evalDate(this ->startDate,this -> endDate)) {
-		//startDate‚ª‰½ƒ‚[ƒh‚©”»’èi“r’†j
+		//startDate‚ª‰½ƒ‚[ƒh‚©”»’è
 		CalculateMode mode = modejudger->judge(this -> startDate);
 	
-		//startDate‚©‚çˆê”Ô‹ß‚¢—¿‹àØ‚è‘Ö‚¦‚ğŒvZi“r’†j
-		date nextDate = this->startDate;
-		if (mode == NOON) {
-			nextDate.information.tm_hour = 22;
-			nextDate.information.tm_min = 0;
-		}
-		else if (mode == NIGHT) {
-			if (this->startDate.information.tm_hour >= 22) {
-				if (modejudger->judge(this->startDate.advance(1)) == SPECIAL_DAY) {
-					nextDate = this->startDate.advance(1);
-					nextDate.information.tm_hour = 0;
-					nextDate.information.tm_min = 0;
-				}
-				else {
-					nextDate = this->startDate.advance(1);
-					nextDate.information.tm_hour =7;
-					nextDate.information.tm_min = 0;
-				}
-			}
-			else{
-				nextDate.information.tm_hour =7;
-				nextDate.information.tm_min = 0;
-			}
-		}
-		else if (mode == SPECIAL_DAY) {
-			nextDate = this->startDate.advance(1);
-			nextDate.information.tm_hour = 0;
-			nextDate.information.tm_min = 0;
-		}
-		else {
-			std::cout << "‰½‚©•Ï‚È‚Ì‚ÅModeCounter.cppŒ©’¼‚·‚±‚Æ";
-		}
+		//startDate‚©‚çˆê”Ô‹ß‚¢—¿‹àØ‚è‘Ö‚¦‚ğŒvZ
+		date nextDate = this->evalBorderDate(mode);
 		//nextDate‚Ì•û‚ª‘å‚«‚¢ê‡
 		if (ModeCounter::evalDate(this->endDate , nextDate)) {
 			nextDate = this->endDate;
 		}
 
+		//ƒ‚[ƒh‚ÌZo
 		time_t startTime = mktime(&(this->startDate.information));
 		time_t nextTime = mktime(&(nextDate.information));
-
 		int minitus = difftime(nextTime, startTime) / 60;
 
 		//vector‚É“Ë‚Á‚Ş
 		cost.push_back(CreateCostCalculator(mode,minitus));
 		//startDate‚ğXV
 		this->startDate.information = nextDate.information;
-		//updateStartDate(this->startDate,mode);
 	}
-
 }
-
+//============================================================
+//ModeCounter
+//CreateCostCalculator(CalculateMode mode,int minitus)
+//INPUT : CalculateMode mode,int minitus
+//OUTPUT : CreateCostCalculator*
+//MEMO : ƒ‚[ƒhA•ª‚É‰‚¶‚ÄCreateCostCalculator*‚ğì¬
+//============================================================
 CostCalculator* ModeCounter::CreateCostCalculator(CalculateMode mode,int minitus)
 {
 	switch (mode) {
@@ -96,8 +95,14 @@ CostCalculator* ModeCounter::CreateCostCalculator(CalculateMode mode,int minitus
 		std::cout << "ModeError" << std::endl;
 	}
 }
-
-bool ModeCounter::evalDate(date startDate, date endDate)//endDate‚Ì•û‚ªƒfƒJ‚©‚Á‚½‚çTRUE
+//============================================================
+//ModeCounter
+//evalDate(date startDate, date endDate)
+//INPUT : struct date,struct date
+//OUTPUT : bool
+//MEMO : startDate < endDate ‚Ìê‡ture
+//============================================================
+bool ModeCounter::evalDate(date startDate, date endDate)
 {
 	time_t startTime = mktime(&startDate.information);
 	time_t endTime = mktime(&(endDate.information));
@@ -106,21 +111,43 @@ bool ModeCounter::evalDate(date startDate, date endDate)//endDate‚Ì•û‚ªƒfƒJ‚©‚Á‚
 	}
 	return false;
 }
-
-struct date evalBorderDate(enum CalculateMode mode) {
-	struct date borderDate;
-	/*switch (mode) {
-	case NOON:
-	case NIGHT:
-	case SPECIAL_DAY:
+//============================================================
+//ModeCounter
+//evalBorderDate(enum CalculateMode mode)
+//INPUT : enum CalculateMode
+//OUTPUT : struct date
+//MEMO : startDate‚©‚çÅ’Z‚Ìƒ‚[ƒh•ÏX‚ğZo
+//============================================================
+struct date ModeCounter::evalBorderDate(enum CalculateMode mode) {
+	struct date nextDate = this->startDate;
+	switch (mode) {
+	case CalculateMode::NOON:
+		nextDate.information.tm_hour = 22;
+		nextDate.information.tm_min = 0;
+		break;
+	case CalculateMode::NIGHT:
+		if (this->startDate.information.tm_hour >= 22) {
+			if (modejudger->judge(this->startDate.advance(1)) == SPECIAL_DAY) {
+				nextDate = this->startDate.advance(1);
+				nextDate.information.tm_hour = 0;
+				nextDate.information.tm_min = 0;
+				break;
+			}
+			nextDate = this->startDate.advance(1);
+			nextDate.information.tm_hour =7;
+			nextDate.information.tm_min = 0;
+			break;
+		}
+		nextDate.information.tm_hour =7;
+		nextDate.information.tm_min = 0;
+		break;
+	case CalculateMode::SPECIAL_DAY:
+		nextDate = this->startDate.advance(1);
+		nextDate.information.tm_hour = 0;
+		nextDate.information.tm_min = 0;
+		break;
+	default:
+	break;
 	}
-	*/
-	return borderDate;
+	return nextDate;
 }
-
-
-
-
-
-
-

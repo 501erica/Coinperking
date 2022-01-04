@@ -2,5 +2,8 @@
    "env": {
       "PATH": "%HOMEPATH"
    },
-   "C_Cpp.errorSquiggles": "Enabled"
+   "C_Cpp.errorSquiggles": "Disabled",
+   "files.associations": {
+      "string": "cpp"
+   }
 }

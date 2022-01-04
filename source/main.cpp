@@ -5,7 +5,7 @@
 #include "Status.h"
 #include "Judger.h"
 
-int main(int argc, char** argv) {//Statusで色々頑張る
+int main(int argc, char** argv) {
 
 	//諸々初期化
 	std::string InDate;
@@ -14,35 +14,38 @@ int main(int argc, char** argv) {//Statusで色々頑張る
 		CONTINUE,
 		END
 	};
-	auto rx = std::regex{ R"((\d{4})(\.|-|/)(\d{2})(\.|-|/)(\d{2})(\.|-|/)(\d{2})(:|-|/)(\d{2}))" };
+
 	bool LoopFlag = false;
-
 	do {
-
 		//入力処理
-		std::cout << "入庫時刻を入力してください（2021年01月15日の場合：2021/01/15.11:05）";
+		std::cout << "入庫時刻を入力してください（2021年01月15日の場合：2021/01/15-11:05）";
+		//std::getline(std::cin, InDate);
 		std::cin >> InDate;
 		std::cout << std::endl;
-		std::cout << "出庫時刻を入力してください（2021年01月15日の場合：2021/01/15.11:05）";
+		std::cout << "出庫時刻を入力してください（2021年01月15日の場合：2021/01/15-11:05）";
+		//std::getline(std::cin , OutDate);
 		std::cin >> OutDate;
 		std::cout << std::endl;
-		Judger* judger = Judger::getInstance();
-		//入力値に問題ない？
-		if (std::regex_match(InDate.c_str(), rx) && std::regex_match(OutDate.c_str(), rx)) { 
+		Judger* inputJudger = Judger::getInstance();
 
+		//入力値に問題ない？
+		if((inputJudger->judge(InDate,OutDate))){
 			//計算～料金表示実施
 			Proxy * p_Proxy = new Proxy(InDate,OutDate);
 			delete p_Proxy;
 		}
-		else {
-			std::cout << "入力値に問題があります。" << std::endl;
-		}
 
-		//継続確認(数値以外をいれるとダメなので直す)
+		//継続確認
 		std::cout << "処理を継続しますか？" << std::endl;
 		std::cout << "継続：0　終了：0以外" << std::endl;
 		int answer;
 		std::cin >> answer;
+		if(std::cin.fail()){
+			std::cin.clear();
+			std::cin.ignore( 256, '\n' );
+			std::cout << "answer is not Integer" << std::endl;
+			answer = 1;
+		}
 		switch (answer) {
 		case CONTINUE:
 			LoopFlag = true;
