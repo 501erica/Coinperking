@@ -129,7 +129,7 @@ bool Judger::judge(std::string InDate, std::string OutDate)
         return false;
     }
 
-    if(Intime = Outtime){
+    if(Intime == Outtime){
         std::cout << "sametime error" << std::endl;
         return false;
     }
