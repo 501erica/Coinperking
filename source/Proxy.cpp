@@ -32,9 +32,6 @@ Proxy::Proxy(std::string InDate, std::string OutDate)
 {
 	//メンバ変数の初期化
 	this->Initialize(InDate, OutDate);
-	//入力値判定(main関数でやらないために)
-	Judger* p_judger = Judger::getInstance();
-	//===========分割してもいいんじゃないか============
 	//Mode数をカウント
 	p_ModeCounter->ModeCount(ModeContainer);
 	//料金を計算して表示
@@ -42,20 +39,19 @@ Proxy::Proxy(std::string InDate, std::string OutDate)
 }
 //============================================================
 //Proxy
-//howCost()
+//showCost()
 //INPUT : 
 //OUTPUT : 
 //MEMO : 料金表示
 //============================================================
 void Proxy::showCost()
 {
-	//vectorの要素の料金計算を指示
+	//vectorの各要素に対して料金計算を指示
 	for (int i = 0; i < this -> ModeContainer.size(); i++) {
 		this->Cost += this -> ModeContainer.at(i)->CostCalculate();
 	}
 	std::cout << "利用料金は　" << this->Cost << "　円です。" << std::endl;
 }
-
 //============================================================
 //Proxy
 //Initialize(std::string InDate, std::string OutDate)

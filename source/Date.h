@@ -14,7 +14,7 @@ struct date {
 	{
 		auto information = this->information;
 		auto time = mktime(&information);
-		information = *localtime(&time);
+		localtime_s(&information,&time);
 		return information.tm_wday;
 	}
 	//============================================================
@@ -29,7 +29,7 @@ struct date {
 		date nextdate;
 		const time_t ONE_DAY = 24 * 60 * 60 ;
 		auto time = mktime(&(this->information)) + (Day * ONE_DAY);
-		nextdate.information = *localtime(&time);
+		localtime_s(&nextdate.information,&time);
 		return nextdate;
 	}
 

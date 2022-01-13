@@ -4,7 +4,6 @@
 #include <vector>
 #include <regex>
 
-Judger* Judger::judger = nullptr;
 //============================================================
 //Judger
 //Judgeri()
@@ -24,20 +23,6 @@ Judger::Judger()
 //============================================================
 Judger::~Judger()
 {
-}
-//============================================================
-//Judger
-//getInstance()
-//INPUT : 
-//OUTPUT : Judger*
-//MEMO : シングルトン用クラス参照メソッド
-//============================================================
-Judger* Judger::getInstance()
-{
-    if (!Judger::judger) {
-        Judger::judger = new Judger();
-    }
-    return nullptr;
 }
 //============================================================
 //Judger
@@ -73,17 +58,6 @@ CalculateMode Judger::judge(date date)
         return CalculateMode::NIGHT;
     }
     return CalculateMode::NOON;
-}
-//============================================================
-//Judger
-//judge(tm)
-//INPUT : struct tm 
-//OUTPUT : bool
-//MEMO : 用途不明
-//============================================================
-bool Judger::judge(struct tm Intime ,struct tm OutTime)
-{
-    return false;
 }
 //============================================================
 //Judger
@@ -138,7 +112,6 @@ bool Judger::judge(std::string InDate, std::string OutDate)
         std::cout << "Intime past time" << std::endl;
         return false;
     }
-
 
     return true;
 }

@@ -2,7 +2,6 @@
 #include <string>
 #include <regex>
 #include "Proxy.h"
-#include "Status.h"
 #include "Judger.h"
 
 int main(int argc, char** argv) {
@@ -19,14 +18,12 @@ int main(int argc, char** argv) {
 	do {
 		//入力処理
 		std::cout << "入庫日時を入力してください（2021年01月15日の場合：2021/01/15-11:05）";
-		//std::getline(std::cin, InDate);
 		std::cin >> InDate;
 		std::cout << std::endl;
 		std::cout << "出庫日時を入力してください（2021年01月15日の場合：2021/01/15-11:05）";
-		//std::getline(std::cin , OutDate);
 		std::cin >> OutDate;
 		std::cout << std::endl;
-		Judger* inputJudger = Judger::getInstance();
+		Judger* inputJudger = new Judger();;
 
 		//入力値に問題ない？
 		if((inputJudger->judge(InDate,OutDate))){
@@ -34,6 +31,8 @@ int main(int argc, char** argv) {
 			Proxy * p_Proxy = new Proxy(InDate,OutDate);
 			delete p_Proxy;
 		}
+
+		delete inputJudger;
 
 		//継続確認
 		std::cout << "処理を継続しますか？" << std::endl;
@@ -49,9 +48,6 @@ int main(int argc, char** argv) {
 		switch (answer) {
 		case CONTINUE:
 			LoopFlag = true;
-			break;
-		case END:
-			LoopFlag = false;
 			break;
 		default:
 			std::cout << "＝＝＝＝＝処理を終了します＝＝＝＝＝" << std::endl;

@@ -12,20 +12,10 @@
 //============================================================
 ModeCounter::ModeCounter()
 {
-	modejudger = Judger::getInstance();
+	modejudger = new Judger();
 	this->startDate = {0};
 	this->endDate = {0};
 
-}
-//============================================================
-//ModeCounter
-//~ModeCounter()
-//INPUT : 
-//OUTPUT : 
-//MEMO : デストラクタ
-//============================================================
-ModeCounter::~ModeCounter()
-{
 }
 //============================================================
 //ModeCounter
@@ -36,9 +26,20 @@ ModeCounter::~ModeCounter()
 //============================================================
 ModeCounter::ModeCounter(struct date InDate, struct date OutDate)
 {
-	modejudger = Judger::getInstance();
+	modejudger = new Judger();
 	this->startDate = InDate;
 	this->endDate = OutDate;
+}
+//============================================================
+//ModeCounter
+//~ModeCounter()
+//INPUT : 
+//OUTPUT : 
+//MEMO : デストラクタ
+//============================================================
+ModeCounter::~ModeCounter()
+{
+	delete modejudger;
 }
 //============================================================
 //ModeCounter
@@ -122,26 +123,33 @@ struct date ModeCounter::evalBorderDate(enum CalculateMode mode) {
 	struct date nextDate = this->startDate;
 	switch (mode) {
 	case CalculateMode::NOON:
+		//22:00にセット
 		nextDate.information.tm_hour = 22;
 		nextDate.information.tm_min = 0;
 		break;
 	case CalculateMode::NIGHT:
+		//22:00以降？
 		if (this->startDate.information.tm_hour >= 22) {
+			//翌日が特別日？
 			if (modejudger->judge(this->startDate.advance(1)) == SPECIAL_DAY) {
+				//翌日の00:00にセット
 				nextDate = this->startDate.advance(1);
 				nextDate.information.tm_hour = 0;
 				nextDate.information.tm_min = 0;
 				break;
 			}
+			//翌日の07:00にセット
 			nextDate = this->startDate.advance(1);
 			nextDate.information.tm_hour =7;
 			nextDate.information.tm_min = 0;
 			break;
 		}
+		//当日の07:00にセット
 		nextDate.information.tm_hour =7;
 		nextDate.information.tm_min = 0;
 		break;
 	case CalculateMode::SPECIAL_DAY:
+		//翌日の00:00にセット
 		nextDate = this->startDate.advance(1);
 		nextDate.information.tm_hour = 0;
 		nextDate.information.tm_min = 0;
