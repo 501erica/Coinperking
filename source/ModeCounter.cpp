@@ -50,12 +50,19 @@ ModeCounter::~ModeCounter()
 //============================================================
 void ModeCounter::ModeCount(std::vector<CostCalculator*>& cost)
 {
+	bool FirstFlag = true;
 	while (ModeCounter::evalDate(this ->startDate,this -> endDate)) {
 		//startDateが何モードか判定
 		CalculateMode mode = modejudger->judge(this -> startDate);
 	
 		//startDateから一番近い料金切り替え時刻を計算
 		date nextDate = this->evalBorderDate(mode);
+
+		//謎ルール適用
+		if (FirstFlag) {
+			ExtraCalc(startDate, nextDate, FirstFlag);
+		}
+
 		//nextDateの方が大きい場合
 		if (ModeCounter::evalDate(this->endDate , nextDate)) {
 			nextDate = this->endDate;
@@ -158,4 +165,58 @@ struct date ModeCounter::evalBorderDate(enum CalculateMode mode) {
 	break;
 	}
 	return nextDate;
+}
+
+//============================================================
+//ModeCounter
+//ExtraCalc()
+//INPUT : struct date , struct date , bool FirstFlag
+//OUTPUT : ture false
+//MEMO : 最初だけモードを跨ぐ＆時間が
+//       昼と特別日：20分、夜：60分以下ならnextdateを変更
+//============================================================
+bool ModeCounter::ExtraCalc(struct date& startdate, struct date& bordardate, bool& FirstFlag) {
+	//初めて？
+	if (!FirstFlag) {
+		return false;
+	}
+	//FirstFlagをfalseに変更
+	FirstFlag = false;
+	//モードの時刻算出
+	time_t startTime = mktime(&startdate.information);
+	time_t nextTime = mktime(&bordardate.information);
+	int minitus = difftime(nextTime, startTime) / 60;
+	CalculateMode mode = modejudger->judge(this->startDate);
+	switch (mode) {
+	case CalculateMode::NOON:
+		if (minitus < 20) {
+			//20分追加する
+			nextTime =(startTime += 60 * 20);
+			localtime_s(&bordardate.information, &nextTime);
+			return true;
+		}
+		return false;
+		break;
+	case CalculateMode::NIGHT:
+		if (minitus < 60) {
+			//60分追加する
+			nextTime = (startTime += 60 * 60);
+			localtime_s(&bordardate.information, &nextTime);
+			return true;
+		}
+		return false;
+		break;
+	case CalculateMode::SPECIAL_DAY:
+		if (minitus < 20) {
+			//20分追加する
+			nextTime = (startTime += 60 * 20);
+			localtime_s(&bordardate.information, &nextTime);
+			return true;
+		}
+		return false;
+		break;
+	default:
+		return false;
+		break;
+	}
 }

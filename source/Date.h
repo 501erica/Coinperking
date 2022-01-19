@@ -30,6 +30,7 @@ struct date {
 		const time_t ONE_DAY = 24 * 60 * 60 ;
 		auto time = mktime(&(this->information)) + (Day * ONE_DAY);
 		localtime_s(&nextdate.information,&time);
+		nextdate.information.tm_isdst = -1;
 		return nextdate;
 	}
 

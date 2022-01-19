@@ -253,3 +253,54 @@ TEST(ModeCount, case1) {
 	EXPECT_EQ(testvector.size(), 3);
 
 }
+TEST(ExtraCalcUnitTest, FirstFlagFalse) {
+	//2022年1月26日 21:55-2022年1月26日 23:00
+	bool FirstFlag = false;
+	struct date testdate_input;
+	testdate_input.information.tm_year = 2022 - 1900;
+	testdate_input.information.tm_mon = 1 - 1;
+	testdate_input.information.tm_mday = 26;
+	testdate_input.information.tm_hour = 21;
+	testdate_input.information.tm_min = 55;
+	testdate_input.information.tm_isdst = -1;
+
+	struct date testdate_output;
+	testdate_output.information.tm_year = 2022 - 1900;
+	testdate_output.information.tm_mon = 1 - 1;
+	testdate_output.information.tm_mday = 26;
+	testdate_output.information.tm_hour = 23;
+	testdate_output.information.tm_min = 00;
+	testdate_output.information.tm_isdst = -1;
+
+	ModeCounter ModeCountTest = ModeCounter(testdate_input, testdate_output);
+
+	EXPECT_FALSE(ModeCountTest.ExtraCalc(testdate_input,testdate_output, FirstFlag));
+	
+}
+
+
+TEST(ExtraCalcUnitTest, FirstFlagTrue) {
+	//2022年1月26日 21:55-2022年1月26日 23:00
+	bool FirstFlag2 = true;
+	struct date testdate_input2;
+	testdate_input2.information.tm_year = 2022 - 1900;
+	testdate_input2.information.tm_mon = 1 - 1;
+	testdate_input2.information.tm_mday = 26;
+	testdate_input2.information.tm_hour = 21;
+	testdate_input2.information.tm_min = 55;
+	testdate_input2.information.tm_isdst = -1;
+
+	struct date testdate_output2;
+	testdate_output2.information.tm_year = 2022 - 1900;
+	testdate_output2.information.tm_mon = 1 - 1;
+	testdate_output2.information.tm_mday = 26;
+	testdate_output2.information.tm_hour = 22;
+	testdate_output2.information.tm_min = 00;
+	testdate_output2.information.tm_isdst = -1;
+
+	ModeCounter ModeCountTest = ModeCounter(testdate_input2, testdate_output2);
+	EXPECT_TRUE(ModeCountTest.ExtraCalc(testdate_input2, testdate_output2, FirstFlag2));
+	EXPECT_EQ(testdate_output2.information.tm_hour,22);
+	EXPECT_EQ(testdate_output2.information.tm_min,15);
+
+}
