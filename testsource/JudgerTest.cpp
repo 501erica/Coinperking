@@ -305,8 +305,8 @@ TEST(JudgerTest, pasttime) {
 TEST(JudgerTest, truecase) {
 	//true case
 	Judger testJudger;
-	std::string testdate1 = "2022/01/20-12:00";
-	std::string testdate2 = "2022/01/22-13:00";
+	std::string testdate1 = "2023/01/20-12:00";
+	std::string testdate2 = "2023/01/22-13:00";
 	EXPECT_TRUE(testJudger.judge(testdate1, testdate2));
 }
 

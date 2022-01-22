@@ -36,25 +36,16 @@ int main(int argc, char** argv) {
 
 		//継続確認
 		std::cout << "処理を継続しますか？" << std::endl;
-		std::cout << "継続：0　終了：0以外" << std::endl;
-		int answer;
+		std::cout << "継続：y　終了：n" << std::endl;
+		std::string answer;
 		std::cin >> answer;
-		if(std::cin.fail()){
-			std::cin.clear();
-			std::cin.ignore( 256, '\n' );
-			std::cout << "answer is not Integer" << std::endl;
-			answer = 1;
-		}
-		switch (answer) {
-		case CONTINUE:
+		auto rx = std::regex{ R"(([yY]))" };
+		if (std::regex_match(answer.c_str(), rx)) {
 			LoopFlag = true;
-			break;
-		default:
-			std::cout << "＝＝＝＝＝処理を終了します＝＝＝＝＝" << std::endl;
-			LoopFlag = false;
-			break;
 		}
-
+		else {
+			LoopFlag = false;
+		}
 	} while (LoopFlag);
 
 	return 0;

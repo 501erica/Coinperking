@@ -279,7 +279,7 @@ TEST(ExtraCalcUnitTest, FirstFlagFalse) {
 }
 
 
-TEST(ExtraCalcUnitTest, FirstFlagTrue) {
+TEST(ExtraCalcUnitTest, FirstFlagTrue_NOON) {
 	//2022年1月26日 21:55-2022年1月26日 23:00
 	bool FirstFlag2 = true;
 	struct date testdate_input2;
@@ -304,3 +304,54 @@ TEST(ExtraCalcUnitTest, FirstFlagTrue) {
 	EXPECT_EQ(testdate_output2.information.tm_min,15);
 
 }
+TEST(ExtraCalcUnitTest, FirstFlagTrue_NIGHT) {
+	//2022年1月26日 06:55-2022年1月26日 7:00
+	bool FirstFlag2 = true;
+	struct date testdate_input2;
+	testdate_input2.information.tm_year = 2022 - 1900;
+	testdate_input2.information.tm_mon = 1 - 1;
+	testdate_input2.information.tm_mday = 26;
+	testdate_input2.information.tm_hour = 06;
+	testdate_input2.information.tm_min = 55;
+	testdate_input2.information.tm_isdst = -1;
+
+	struct date testdate_output2;
+	testdate_output2.information.tm_year = 2022 - 1900;
+	testdate_output2.information.tm_mon = 1 - 1;
+	testdate_output2.information.tm_mday = 26;
+	testdate_output2.information.tm_hour = 07;
+	testdate_output2.information.tm_min = 00;
+	testdate_output2.information.tm_isdst = -1;
+
+	ModeCounter ModeCountTest = ModeCounter(testdate_input2, testdate_output2);
+	EXPECT_TRUE(ModeCountTest.ExtraCalc(testdate_input2, testdate_output2, FirstFlag2));
+	EXPECT_EQ(testdate_output2.information.tm_hour, 7);
+	EXPECT_EQ(testdate_output2.information.tm_min, 55);
+
+}
+TEST(ExtraCalcUnitTest, FirstFlagTrue_SPECIAL) {
+	//2022年1月23日 23:55-2022年1月24日 0:00
+	bool FirstFlag2 = true;
+	struct date testdate_input2;
+	testdate_input2.information.tm_year = 2022 - 1900;
+	testdate_input2.information.tm_mon = 1 - 1;
+	testdate_input2.information.tm_mday = 23;
+	testdate_input2.information.tm_hour = 23;
+	testdate_input2.information.tm_min = 55;
+	testdate_input2.information.tm_isdst = -1;
+
+	struct date testdate_output2;
+	testdate_output2.information.tm_year = 2022 - 1900;
+	testdate_output2.information.tm_mon = 1 - 1;
+	testdate_output2.information.tm_mday = 24;
+	testdate_output2.information.tm_hour = 00;
+	testdate_output2.information.tm_min = 00;
+	testdate_output2.information.tm_isdst = -1;
+
+	ModeCounter ModeCountTest = ModeCounter(testdate_input2, testdate_output2);
+	EXPECT_TRUE(ModeCountTest.ExtraCalc(testdate_input2, testdate_output2, FirstFlag2));
+	EXPECT_EQ(testdate_output2.information.tm_hour, 0);
+	EXPECT_EQ(testdate_output2.information.tm_min, 15);
+
+}
+
