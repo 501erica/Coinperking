@@ -45,4 +45,3 @@ public:
 	~CostCalculator_SpecialDay();
 private:
 };
-

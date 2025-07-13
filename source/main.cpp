@@ -6,7 +6,7 @@
 
 int main(int argc, char** argv) {
 
-	//”X‰Šú‰»
+	//è«¸ã€…åˆæœŸåŒ–
 	std::string InDate;
 	std::string OutDate;
 	enum answer {
@@ -16,27 +16,27 @@ int main(int argc, char** argv) {
 
 	bool LoopFlag = false;
 	do {
-		//“ü—Íˆ—
-		std::cout << "“üŒÉ“ú‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢i2021”N01Œ15“ú‚Ìê‡F2021/01/15-11:05j";
+		//å…¥åŠ›å‡¦ç†
+		std::cout << "å…¥åº«æ—¥æ™‚ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ï¼ˆ2021å¹´01æœˆ15æ—¥ã®å ´åˆï¼š2021/01/15-11:05ï¼‰";
 		std::cin >> InDate;
 		std::cout << std::endl;
-		std::cout << "oŒÉ“ú‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢i2021”N01Œ15“ú‚Ìê‡F2021/01/15-11:05j";
+		std::cout << "å‡ºåº«æ—¥æ™‚ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ï¼ˆ2021å¹´01æœˆ15æ—¥ã®å ´åˆï¼š2021/01/15-11:05ï¼‰";
 		std::cin >> OutDate;
 		std::cout << std::endl;
 		Judger* inputJudger = new Judger();;
 
-		//“ü—Í’l‚É–â‘è‚È‚¢H
+		//å…¥åŠ›å€¤ã«å•é¡Œãªã„ï¼Ÿ
 		if((inputJudger->judge(InDate,OutDate))){
-			//ŒvZ`—¿‹à•\¦À{
+			//è¨ˆç®—ï½æ–™é‡‘è¡¨ç¤ºå®Ÿæ–½
 			Proxy * p_Proxy = new Proxy(InDate,OutDate);
 			delete p_Proxy;
 		}
 
 		delete inputJudger;
 
-		//Œp‘±Šm”F
-		std::cout << "ˆ—‚ğŒp‘±‚µ‚Ü‚·‚©H" << std::endl;
-		std::cout << "Œp‘±Fy@I—¹Fn" << std::endl;
+		//ç¶™ç¶šç¢ºèª
+		std::cout << "å‡¦ç†ã‚’ç¶™ç¶šã—ã¾ã™ã‹ï¼Ÿ" << std::endl;
+		std::cout << "ç¶™ç¶šï¼šyã€€çµ‚äº†ï¼šn" << std::endl;
 		std::string answer;
 		std::cin >> answer;
 		auto rx = std::regex{ R"(([yY]))" };

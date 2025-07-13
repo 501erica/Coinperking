@@ -9,11 +9,11 @@ public:
 	//static Judger* judger;
 	Judger();
 	~Judger();
-	//ƒ‚[ƒh”»’è
+	//ãƒ¢ãƒ¼ãƒ‰åˆ¤å®š
 	CalculateMode judge(struct date);
-	//“ú•t‚Ì‘å¬”»’è
+	//æ—¥ä»˜ã®å¤§å°åˆ¤å®š
 	bool judge(struct tm,struct tm);
-	//“ü—Í’l”»’è
+	//å…¥åŠ›å€¤åˆ¤å®š
 	bool judge(std::string, std::string);
 
 };

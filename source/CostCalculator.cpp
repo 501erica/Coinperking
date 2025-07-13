@@ -6,7 +6,7 @@
 //CostCalculator::CostCalculate()
 //INPUT : 
 //OUTPUT : 
-//MEMO : ƒRƒXƒgŒvŽZ
+//MEMO : ã‚³ã‚¹ãƒˆè¨ˆç®—
 //============================================================
 int CostCalculator::CostCalculate()
 {
@@ -21,7 +21,7 @@ int CostCalculator::CostCalculate()
 //CostCalculator_Noon::CostCalculator_Noon()
 //INPUT : 
 //OUTPUT : 
-//MEMO : ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+//MEMO : ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 //============================================================
 CostCalculator_Noon::CostCalculator_Noon()
 {
@@ -31,7 +31,7 @@ CostCalculator_Noon::CostCalculator_Noon()
 //CostCalculator_Noon::CostCalculator_Noon()
 //INPUT : int minitus
 //OUTPUT : 
-//MEMO : ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+//MEMO : ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 //============================================================
 CostCalculator_Noon::CostCalculator_Noon(int minitus)
 {
@@ -45,7 +45,7 @@ CostCalculator_Noon::CostCalculator_Noon(int minitus)
 //CostCalculator_Noon::~CostCalculator_Noon()
 //INPUT : 
 //OUTPUT : 
-//MEMO : ƒfƒXƒgƒ‰ƒNƒ^ 
+//MEMO : ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ 
 //============================================================
 CostCalculator_Noon::~CostCalculator_Noon()
 {
@@ -55,7 +55,7 @@ CostCalculator_Noon::~CostCalculator_Noon()
 //CostCalculator_Night::CostCalculator_Night()
 //INPUT : 
 //OUTPUT : 
-//MEMO : ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+//MEMO : ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 //============================================================
 CostCalculator_Night::CostCalculator_Night()
 {
@@ -65,7 +65,7 @@ CostCalculator_Night::CostCalculator_Night()
 //CostCalculator_Night::CostCalculator_Night()
 //INPUT : int minitus
 //OUTPUT : 
-//MEMO : ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+//MEMO : ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 //============================================================
 CostCalculator_Night::CostCalculator_Night(int minitus)
 {
@@ -79,7 +79,7 @@ CostCalculator_Night::CostCalculator_Night(int minitus)
 //CostCalculator_Night::~CostCalculator_Night()
 //INPUT : 
 //OUTPUT : 
-//MEMO : ƒfƒXƒgƒ‰ƒNƒ^
+//MEMO : ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 //============================================================
 CostCalculator_Night::~CostCalculator_Night()
 {
@@ -89,7 +89,7 @@ CostCalculator_Night::~CostCalculator_Night()
 //CostCalculator_SpecialDay::CostCalculator_SpecialDay()
 //INPUT : 
 //OUTPUT : 
-//MEMO : ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+//MEMO : ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 //============================================================
 CostCalculator_SpecialDay::CostCalculator_SpecialDay()
 {
@@ -100,7 +100,7 @@ CostCalculator_SpecialDay::CostCalculator_SpecialDay()
 //CostCalculator_SpecialDay::CostCalculator_SpecialDay()
 //INPUT : int minitus
 //OUTPUT : 
-//MEMO : ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+//MEMO : ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 //============================================================
 CostCalculator_SpecialDay::CostCalculator_SpecialDay(int minitus)
 {
@@ -114,7 +114,7 @@ CostCalculator_SpecialDay::CostCalculator_SpecialDay(int minitus)
 //CostCalculator_SpecialDay::~CostCalculator_SpecialDay()
 //INPUT : 
 //OUTPUT : 
-//MEMO : ƒfƒXƒgƒ‰ƒNƒ^
+//MEMO : ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 //============================================================
 CostCalculator_SpecialDay::~CostCalculator_SpecialDay()
 {

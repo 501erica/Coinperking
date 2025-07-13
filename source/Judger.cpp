@@ -9,7 +9,7 @@
 //Judgeri()
 //INPUT :
 //OUTPUT :
-//MEMO : ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+//MEMO : ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 //============================================================
 Judger::Judger()
 {
@@ -19,7 +19,7 @@ Judger::Judger()
 //~Judger
 //INPUT : 
 //OUTPUT : 
-//MEMO : ƒfƒXƒgƒ‰ƒNƒ^
+//MEMO : ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 //============================================================
 Judger::~Judger()
 {
@@ -29,7 +29,7 @@ Judger::~Judger()
 //judge(struct date)
 //INPUT : struct date
 //OUTPUT : CalculateMode
-//MEMO : ˆø”‚Ì“ú•t‚Ìƒ‚[ƒh”»’è
+//MEMO : å¼•æ•°ã®æ—¥ä»˜ã®ãƒ¢ãƒ¼ãƒ‰åˆ¤å®š
 //============================================================
 CalculateMode Judger::judge(date date)
 {
@@ -64,19 +64,19 @@ CalculateMode Judger::judge(date date)
 //judge(std::string, std::string)
 //INPUT : string,string
 //OUTPUT : bool
-//MEMO : “ü—Í’l”»’è
+//MEMO : å…¥åŠ›å€¤åˆ¤å®š
 //============================================================
 bool Judger::judge(std::string InDate, std::string OutDate)
 {
 	auto rx = std::regex{ R"((\d{4})(\.|-|/)(\d{2})(\.|-|/)(\d{2})(\.|-|/| )(\d{2})(:|-|/)(\d{2}))" };
 	if (!(std::regex_match(InDate.c_str(), rx) && std::regex_match(OutDate.c_str(), rx))) { 
-	    std::cout << "“ü—ÍŒ`®‚ª•s³‚Å‚·BˆÈ‰º‚ÌŒ`®‚Å“ú‚ğ”¼Šp‚Å“ü—Í‚µ‚Ä‚­‚¾‚³‚¢" << "yyyy/mm/dd-hh:mm" << std::endl;
+	    std::cout << "å…¥åŠ›å½¢å¼ãŒä¸æ­£ã§ã™ã€‚ä»¥ä¸‹ã®å½¢å¼ã§æ—¥æ™‚ã‚’åŠè§’ã§å…¥åŠ›ã—ã¦ãã ã•ã„" << "yyyy/mm/dd-hh:mm" << std::endl;
         return false;
     }
 
     auto rx2 = std::regex{ R"(([1-2][0-9][0-9][0-9])(\.|-|/)(0[1-9]|1[0-2])(\.|-|/)(0[1-9]|[12][0-9]|3[01])(\.|-|/| )([01][0-9]|2[0-3])(:|-|/)([0-5][0-9]))" };
     if (!(std::regex_match(InDate.c_str(), rx2) && std::regex_match(OutDate.c_str(), rx2))) {
-        std::cout << "“ü—ÍŒ`®‚ª•s³‚Å‚·B“ü—Í”N‚Í1000~2999,“ü—ÍŒ‚Í01~12,“ü—Í“ú‚Í01~31‚Å“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B" << std::endl;
+        std::cout << "å…¥åŠ›å½¢å¼ãŒä¸æ­£ã§ã™ã€‚å…¥åŠ›å¹´ã¯1000~2999,å…¥åŠ›æœˆã¯01~12,å…¥åŠ›æ—¥ã¯01~31ã§å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚" << std::endl;
         return false;
     }
 
@@ -101,25 +101,25 @@ bool Judger::judge(std::string InDate, std::string OutDate)
     time_t now = time(nullptr);
 
     if((Outtime - Intime) > 72*3600){
-        std::cout << "Å‘å’“ÔŠÔi72ŠÔj‚ğ’´‚¦‚é“ú‚ªw’è‚³‚ê‚Ä‚¢‚Ü‚·B" << std::endl;
+        std::cout << "æœ€å¤§é§è»Šæ™‚é–“ï¼ˆ72æ™‚é–“ï¼‰ã‚’è¶…ãˆã‚‹æ—¥æ™‚ãŒæŒ‡å®šã•ã‚Œã¦ã„ã¾ã™ã€‚" << std::endl;
         return false;
     }
 
     if(Intime > Outtime){
-        std::cout << "“úw’è‚ª•s³‚Å‚·BoŒÉ“ú‚É“üŒÉ‚æ‚è‰ß‹‚ÌŠÔ‚ªw’è‚³‚ê‚Ä‚¢‚Ü‚·B" << std::endl;
+        std::cout << "æ—¥æ™‚æŒ‡å®šãŒä¸æ­£ã§ã™ã€‚å‡ºåº«æ—¥æ™‚ã«å…¥åº«æ™‚åˆ»ã‚ˆã‚Šéå»ã®æ™‚é–“ãŒæŒ‡å®šã•ã‚Œã¦ã„ã¾ã™ã€‚" << std::endl;
         return false;
     }
 
     if(Intime == Outtime){
-        std::cout << "“úw’è‚ª•s³‚Å‚·B“üŒÉEoŒÉ“ú‚ª“¯‚¶‚Å‚·B" << std::endl;
+        std::cout << "æ—¥æ™‚æŒ‡å®šãŒä¸æ­£ã§ã™ã€‚å…¥åº«ãƒ»å‡ºåº«æ—¥æ™‚ãŒåŒã˜ã§ã™ã€‚" << std::endl;
         return false;
     }
     
     if(now > Intime){
-        std::cout << "“úw’è‚ª•s³‚Å‚·B–{“ú‚æ‚è‰ß‹‚Ì“ú‚ªw’è‚³‚ê‚Ä‚¢‚Ü‚·B" << std::endl;
+        std::cout << "æ—¥æ™‚æŒ‡å®šãŒä¸æ­£ã§ã™ã€‚æœ¬æ—¥ã‚ˆã‚Šéå»ã®æ—¥æ™‚ãŒæŒ‡å®šã•ã‚Œã¦ã„ã¾ã™ã€‚" << std::endl;
         return false;
     }
-
+    
     return true;
 }
 

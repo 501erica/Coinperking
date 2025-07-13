@@ -8,13 +8,13 @@ struct date {
 	//day_of_week()
 	//INPUT : 
 	//OUTPUT : int
-	//MEMO : —j“ú”»’è [0`6](“ú:0 ŒŽ:1 ‰Î:2 …:3 –Ø:4 ‹à:5 “y:6)
+	//MEMO : æ›œæ—¥åˆ¤å®š [0ï½ž6](æ—¥:0 æœˆ:1 ç«:2 æ°´:3 æœ¨:4 é‡‘:5 åœŸ:6)
 	//============================================================
 	int day_of_week()
 	{
 		auto information = this->information;
 		auto time = mktime(&information);
-		localtime_s(&information,&time);
+		localtime_r(&time,&information);
 		return information.tm_wday;
 	}
 	//============================================================
@@ -22,14 +22,14 @@ struct date {
 	//advance(int Day)
 	//INPUT : int
 	//OUTPUT : date
-	//MEMO : ˆø”‚ÅŽw’è‚³‚ê‚½”‚¾‚¯“ú•t‚ði‚ß‚é
+	//MEMO : å¼•æ•°ã§æŒ‡å®šã•ã‚ŒãŸæ•°ã ã‘æ—¥ä»˜ã‚’é€²ã‚ã‚‹
 	//============================================================
 	date advance(int Day)
 	{
 		date nextdate;
 		const time_t ONE_DAY = 24 * 60 * 60 ;
 		auto time = mktime(&(this->information)) + (Day * ONE_DAY);
-		localtime_s(&nextdate.information,&time);
+		localtime_r(&time,&nextdate.information);
 		nextdate.information.tm_isdst = -1;
 		return nextdate;
 	}

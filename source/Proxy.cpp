@@ -5,7 +5,7 @@
 //:Proxy()
 //INPUT : 
 //OUTPUT : 
-//MEMO : ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+//MEMO : ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 //============================================================
 Proxy::Proxy()
 {
@@ -15,7 +15,7 @@ Proxy::Proxy()
 //~Proxy()
 //INPUT : 
 //OUTPUT : 
-//MEMO : ƒfƒXƒgƒ‰ƒNƒ^
+//MEMO : ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 //============================================================
 Proxy::~Proxy()
 {
@@ -26,15 +26,15 @@ Proxy::~Proxy()
 //Proxy(std::string InDate, std::string OutDate)
 //INPUT : string , string
 //OUTPUT : 
-//MEMO : ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+//MEMO : ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 //============================================================
 Proxy::Proxy(std::string InDate, std::string OutDate)
 {
-	//ƒƒ“ƒo•Ï”‚Ì‰Šú‰»
+	//ãƒ¡ãƒ³ãƒå¤‰æ•°ã®åˆæœŸåŒ–
 	this->Initialize(InDate, OutDate);
-	//Mode”‚ğƒJƒEƒ“ƒg
+	//Modeæ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆ
 	p_ModeCounter->ModeCount(ModeContainer);
-	//—¿‹à‚ğŒvZ‚µ‚Ä•\¦
+	//æ–™é‡‘ã‚’è¨ˆç®—ã—ã¦è¡¨ç¤º
 	this->showCost();
 }
 //============================================================
@@ -42,22 +42,22 @@ Proxy::Proxy(std::string InDate, std::string OutDate)
 //showCost()
 //INPUT : 
 //OUTPUT : 
-//MEMO : —¿‹à•\¦
+//MEMO : æ–™é‡‘è¡¨ç¤º
 //============================================================
 void Proxy::showCost()
 {
-	//vector‚ÌŠe—v‘f‚É‘Î‚µ‚Ä—¿‹àŒvZ‚ğw¦
+	//vectorã®å„è¦ç´ ã«å¯¾ã—ã¦æ–™é‡‘è¨ˆç®—ã‚’æŒ‡ç¤º
 	for (int i = 0; i < this -> ModeContainer.size(); i++) {
 		this->Cost += this -> ModeContainer.at(i)->CostCalculate();
 	}
-	std::cout << "—˜—p—¿‹à‚Í@" << this->Cost << "@‰~‚Å‚·B" << std::endl;
+	std::cout << "åˆ©ç”¨æ–™é‡‘ã¯ã€€" << this->Cost << "ã€€å††ã§ã™ã€‚" << std::endl;
 }
 //============================================================
 //Proxy
 //Initialize(std::string InDate, std::string OutDate)
 //INPUT : string , string
 //OUTPUT : 
-//MEMO : ƒƒ“ƒo•Ï”‚Ì‰Šú‰»
+//MEMO : ãƒ¡ãƒ³ãƒå¤‰æ•°ã®åˆæœŸåŒ–
 //============================================================
 void Proxy::Initialize(std::string InDate, std::string OutDate)
 {

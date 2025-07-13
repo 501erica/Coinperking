@@ -8,7 +8,7 @@
 //ModeCounter()
 //INPUT : 
 //OUTPUT : 
-//MEMO : ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+//MEMO : ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 //============================================================
 ModeCounter::ModeCounter()
 {
@@ -22,7 +22,7 @@ ModeCounter::ModeCounter()
 //ModeCounter(struct date InDate, struct date OutDate)
 //INPUT : struct date ,struct date
 //OUTPUT : 
-//MEMO : ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+//MEMO : ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 //============================================================
 ModeCounter::ModeCounter(struct date InDate, struct date OutDate)
 {
@@ -35,7 +35,7 @@ ModeCounter::ModeCounter(struct date InDate, struct date OutDate)
 //~ModeCounter()
 //INPUT : 
 //OUTPUT : 
-//MEMO : ƒfƒXƒgƒ‰ƒNƒ^
+//MEMO : ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 //============================================================
 ModeCounter::~ModeCounter()
 {
@@ -46,36 +46,36 @@ ModeCounter::~ModeCounter()
 //ModeCount(std::vector<CostCalculator*>& cost)
 //INPUT : vector<CostCaluculator*>
 //OUTPUT : 
-//MEMO : “üê‚Æ‘Şê‚©‚çƒ‚[ƒh(’‹E–éE“Á•Ê“ú)‚ÌŒÂ”‚ğŒvZ
+//MEMO : å…¥å ´æ™‚åˆ»ã¨é€€å ´æ™‚åˆ»ã‹ã‚‰ãƒ¢ãƒ¼ãƒ‰(æ˜¼ãƒ»å¤œãƒ»ç‰¹åˆ¥æ—¥)ã®å€‹æ•°ã‚’è¨ˆç®—
 //============================================================
 void ModeCounter::ModeCount(std::vector<CostCalculator*>& cost)
 {
 	bool FirstFlag = true;
 	while (ModeCounter::evalDate(this ->startDate,this -> endDate)) {
-		//startDate‚ª‰½ƒ‚[ƒh‚©”»’è
+		//startDateãŒä½•ãƒ¢ãƒ¼ãƒ‰ã‹åˆ¤å®š
 		CalculateMode mode = modejudger->judge(this -> startDate);
 	
-		//startDate‚©‚çˆê”Ô‹ß‚¢—¿‹àØ‚è‘Ö‚¦‚ğŒvZ
+		//startDateã‹ã‚‰ä¸€ç•ªè¿‘ã„æ–™é‡‘åˆ‡ã‚Šæ›¿ãˆæ™‚åˆ»ã‚’è¨ˆç®—
 		date nextDate = this->evalBorderDate(mode);
 
-		//“äƒ‹[ƒ‹“K—p
+		//è¬›åº§ä¸­ã«è¿½åŠ ã•ã‚ŒãŸãƒ«ãƒ¼ãƒ«å¯¾å¿œ
 		if (FirstFlag) {
 			ExtraCalc(startDate, nextDate, FirstFlag);
 		}
 
-		//nextDate‚Ì•û‚ª‘å‚«‚¢ê‡
+		//nextDateã®æ–¹ãŒå¤§ãã„å ´åˆ
 		if (ModeCounter::evalDate(this->endDate , nextDate)) {
 			nextDate = this->endDate;
 		}
 
-		//ƒ‚[ƒh‚ÌZo
+		//ãƒ¢ãƒ¼ãƒ‰ã®æ™‚åˆ»ç®—å‡º
 		time_t startTime = mktime(&(this->startDate.information));
 		time_t nextTime = mktime(&(nextDate.information));
 		int minitus = difftime(nextTime, startTime) / 60;
 
-		//vector‚É“Ë‚Á‚Ş
+		//vectorã«çªã£è¾¼ã‚€
 		cost.push_back(CreateCostCalculator(mode,minitus));
-		//startDate‚ğXV
+		//startDateã‚’æ›´æ–°
 		this->startDate.information = nextDate.information;
 	}
 }
@@ -84,7 +84,7 @@ void ModeCounter::ModeCount(std::vector<CostCalculator*>& cost)
 //CreateCostCalculator(CalculateMode mode,int minitus)
 //INPUT : CalculateMode mode,int minitus
 //OUTPUT : CreateCostCalculator*
-//MEMO : ƒ‚[ƒhA•ª‚É‰‚¶‚ÄCreateCostCalculator*‚ğì¬
+//MEMO : ãƒ¢ãƒ¼ãƒ‰ã€åˆ†ã«å¿œã˜ã¦CreateCostCalculator*ã‚’ä½œæˆ
 //============================================================
 CostCalculator* ModeCounter::CreateCostCalculator(CalculateMode mode,int minitus)
 {
@@ -108,7 +108,7 @@ CostCalculator* ModeCounter::CreateCostCalculator(CalculateMode mode,int minitus
 //evalDate(date startDate, date endDate)
 //INPUT : struct date,struct date
 //OUTPUT : bool
-//MEMO : startDate < endDate ‚Ìê‡ture
+//MEMO : startDate < endDate ã®å ´åˆture
 //============================================================
 bool ModeCounter::evalDate(date startDate, date endDate)
 {
@@ -124,39 +124,39 @@ bool ModeCounter::evalDate(date startDate, date endDate)
 //evalBorderDate(enum CalculateMode mode)
 //INPUT : enum CalculateMode
 //OUTPUT : struct date
-//MEMO : startDate‚©‚çÅ’Z‚Ìƒ‚[ƒh•ÏX‚ğZo
+//MEMO : startDateã‹ã‚‰æœ€çŸ­ã®ãƒ¢ãƒ¼ãƒ‰å¤‰æ›´æ™‚åˆ»ã‚’ç®—å‡º
 //============================================================
 struct date ModeCounter::evalBorderDate(enum CalculateMode mode) {
 	struct date nextDate = this->startDate;
 	switch (mode) {
 	case CalculateMode::NOON:
-		//22:00‚ÉƒZƒbƒg
+		//22:00ã«ã‚»ãƒƒãƒˆ
 		nextDate.information.tm_hour = 22;
 		nextDate.information.tm_min = 0;
 		break;
 	case CalculateMode::NIGHT:
-		//22:00ˆÈ~H
+		//22:00ä»¥é™ï¼Ÿ
 		if (this->startDate.information.tm_hour >= 22) {
-			//—‚“ú‚ª“Á•Ê“úH
+			//ç¿Œæ—¥ãŒç‰¹åˆ¥æ—¥ï¼Ÿ
 			if (modejudger->judge(this->startDate.advance(1)) == SPECIAL_DAY) {
-				//—‚“ú‚Ì00:00‚ÉƒZƒbƒg
+				//ç¿Œæ—¥ã®00:00ã«ã‚»ãƒƒãƒˆ
 				nextDate = this->startDate.advance(1);
 				nextDate.information.tm_hour = 0;
 				nextDate.information.tm_min = 0;
 				break;
 			}
-			//—‚“ú‚Ì07:00‚ÉƒZƒbƒg
+			//ç¿Œæ—¥ã®07:00ã«ã‚»ãƒƒãƒˆ
 			nextDate = this->startDate.advance(1);
 			nextDate.information.tm_hour =7;
 			nextDate.information.tm_min = 0;
 			break;
 		}
-		//“–“ú‚Ì07:00‚ÉƒZƒbƒg
+		//å½“æ—¥ã®07:00ã«ã‚»ãƒƒãƒˆ
 		nextDate.information.tm_hour =7;
 		nextDate.information.tm_min = 0;
 		break;
 	case CalculateMode::SPECIAL_DAY:
-		//—‚“ú‚Ì00:00‚ÉƒZƒbƒg
+		//ç¿Œæ—¥ã®00:00ã«ã‚»ãƒƒãƒˆ
 		nextDate = this->startDate.advance(1);
 		nextDate.information.tm_hour = 0;
 		nextDate.information.tm_min = 0;
@@ -172,17 +172,17 @@ struct date ModeCounter::evalBorderDate(enum CalculateMode mode) {
 //ExtraCalc()
 //INPUT : struct date , struct date , bool FirstFlag
 //OUTPUT : ture false
-//MEMO : Å‰‚¾‚¯ƒ‚[ƒh‚ğŒ×‚®•ŠÔ‚ª
-//       ’‹‚Æ“Á•Ê“úF20•ªA–éF60•ªˆÈ‰º‚È‚çnextdate‚ğ•ÏX
+//MEMO : æœ€åˆã ã‘ãƒ¢ãƒ¼ãƒ‰ã‚’è·¨ãï¼†æ™‚é–“ãŒ
+//       æ˜¼ã¨ç‰¹åˆ¥æ—¥ï¼š20åˆ†ã€å¤œï¼š60åˆ†ä»¥ä¸‹ãªã‚‰nextdateã‚’å¤‰æ›´
 //============================================================
 bool ModeCounter::ExtraCalc(struct date& startdate, struct date& bordardate, bool& FirstFlag) {
-	//‰‚ß‚ÄH
+	//åˆã‚ã¦ï¼Ÿ
 	if (!FirstFlag) {
 		return false;
 	}
-	//FirstFlag‚ğfalse‚É•ÏX
+	//FirstFlagã‚’falseã«å¤‰æ›´
 	FirstFlag = false;
-	//ƒ‚[ƒh‚ÌZo
+	//ãƒ¢ãƒ¼ãƒ‰ã®æ™‚åˆ»ç®—å‡º
 	time_t startTime = mktime(&startdate.information);
 	time_t nextTime = mktime(&bordardate.information);
 	int minitus = difftime(nextTime, startTime) / 60;
@@ -190,27 +190,27 @@ bool ModeCounter::ExtraCalc(struct date& startdate, struct date& bordardate, boo
 	switch (mode) {
 	case CalculateMode::NOON:
 		if (minitus < 20) {
-			//20•ª’Ç‰Á‚·‚é
+			///20åˆ†è¿½åŠ ã™ã‚‹
 			nextTime =(startTime += 60 * 20);
-			localtime_s(&bordardate.information, &nextTime);
+			localtime_r(&nextTime,&bordardate.information);
 			return true;
 		}
 		return false;
 		break;
 	case CalculateMode::NIGHT:
 		if (minitus < 60) {
-			//60•ª’Ç‰Á‚·‚é
+			//60åˆ†è¿½åŠ ã™ã‚‹
 			nextTime = (startTime += 60 * 60);
-			localtime_s(&bordardate.information, &nextTime);
+			localtime_r(&nextTime,&bordardate.information);
 			return true;
 		}
 		return false;
 		break;
 	case CalculateMode::SPECIAL_DAY:
 		if (minitus < 20) {
-			//20•ª’Ç‰Á‚·‚é
+			//20åˆ†è¿½åŠ ã™ã‚‹
 			nextTime = (startTime += 60 * 20);
-			localtime_s(&bordardate.information, &nextTime);
+			localtime_r(&nextTime,&bordardate.information);
 			return true;
 		}
 		return false;
