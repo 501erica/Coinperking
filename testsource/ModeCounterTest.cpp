@@ -1,7 +1,7 @@
 #include "pch.h"
-#include "../Perking/Judger.h"
-#include "../Perking/Mode.h"
-#include "../Perking/ModeCounter.h"
+#include "Judger.h"
+#include "Mode.h"
+#include "ModeCounter.h"
 
 TEST(evalDateTest, inputsmall) {
 	ModeCounter ModeCountTest;

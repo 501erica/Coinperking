@@ -13,8 +13,8 @@
 ModeCounter::ModeCounter()
 {
 	modejudger = new Judger();
-	this->startDate = {0};
-	this->endDate = {0};
+	this->startDate = {};
+	this->endDate = {};
 
 }
 //============================================================

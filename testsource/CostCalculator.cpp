@@ -1,7 +1,7 @@
 #include "pch.h"
-#include "../Perking/CostCalculator.h"
-#include "../Perking/Mode.h"
-#include "../Perking/Date.h"
+#include "CostCalculator.h"
+#include "Mode.h"
+#include "Date.h"
 
 TEST(CostCalculate, Noon) {
 	CostCalculator_Noon testclass = CostCalculator_Noon(200);

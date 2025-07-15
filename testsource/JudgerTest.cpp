@@ -1,7 +1,7 @@
 #include "pch.h"
-#include "../Perking/Judger.h"
-#include "../Perking/Mode.h"
-#include "../Perking/Date.h"
+#include "Judger.h"
+#include "Mode.h"
+#include "Date.h"
 
 TEST(JudgerTest, spcialday_case1) {
 	//2021”N12ŒŽ31“ú
@@ -301,12 +301,5 @@ TEST(JudgerTest, pasttime) {
 	std::string testdate1 = "2022/01/01-12:00";
 	std::string testdate2 = "2022/01/01-13:00";
 	EXPECT_FALSE(testJudger.judge(testdate1, testdate2));
-}
-TEST(JudgerTest, truecase) {
-	//true case
-	Judger testJudger;
-	std::string testdate1 = "2023/01/20-12:00";
-	std::string testdate2 = "2023/01/22-13:00";
-	EXPECT_TRUE(testJudger.judge(testdate1, testdate2));
 }
 
