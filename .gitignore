@@ -50,7 +50,9 @@ build/
 *.vcxproj
 *.vcxproj.filters
 *.db
-googletest-release-1.8.1
+*.zip
+_CPack_Packages
+Testing
 
 
 

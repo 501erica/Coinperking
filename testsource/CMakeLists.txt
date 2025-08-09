@@ -17,6 +17,7 @@ target_link_libraries(CoinperkingTests
 target_include_directories(CoinperkingTests
     PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}
+    ${CMAKE_SOURCE_DIR}/source/include
 )
 
 gtest_discover_tests(CoinperkingTests)
