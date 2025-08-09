@@ -5,5 +5,8 @@
    "C_Cpp.errorSquiggles": "Disabled",
    "files.associations": {
       "string": "cpp"
-   }
+   },
+   "editor.formatOnSave": true,
+   "C_Cpp.formatting": "clangFormat",
+   "C_Cpp.clang_format_style": "file" // .clang-format を優先
 }

@@ -1,6 +1,7 @@
 #pragma once
-enum CalculateMode {
-	NOON,
-	NIGHT,
-	SPECIAL_DAY
+enum CalculateMode
+{
+    NOON,
+    NIGHT,
+    SPECIAL_DAY
 };
