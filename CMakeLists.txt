@@ -7,23 +7,24 @@ project(Coinperking
         LANGUAGES CXX
 )
 
+# C++要件
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
+# 標準のテストフラグ付与
+include(CTest)
 enable_testing()
 
-include(FetchContent)
-
-# GoogleTestの取得と有効化（testsource で使うため）
-FetchContent_Declare(
-  googletest
-  URL https://github.com/google/googletest/archive/refs/heads/main.zip
-)
-FetchContent_MakeAvailable(googletest)
-
+# Main ソースディレクトリの追加
 add_subdirectory(source)
-add_subdirectory(testsource)
 
+if(BUILD_TESTING)
+  # googletest の取得とテストソースディレクトリの追加
+  include(cmake/deps.cmake)
+  # テストソースディレクトリの追加
+  add_subdirectory(testsource)
+endif()
 # ============================
 # インストール設定
 # ============================
@@ -31,11 +32,6 @@ add_subdirectory(testsource)
 if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
     set(CMAKE_INSTALL_PREFIX "${CMAKE_BINARY_DIR}/install" CACHE PATH "Install path" FORCE)
 endif()
-
-# ソースディレクトリのヘッダをインストール
-install(DIRECTORY source/include/
-    DESTINATION include
-)
 
 # =========================
 # CPack 設定

@@ -17,4 +17,5 @@ Coinperking は、CMake で構築された C++ プロジェクトです。
 cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=./install
 cmake --build build
 ctest --test-dir build
+cmake --install build
 cpack --config build/CPackConfig.cmake
